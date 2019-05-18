@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      #wraper{
+          width: 400px;
+          margin:0 auto;
+          overflow: hidden;
+          position: relative;
+      }
+      .wraper{
+          overflow: hidden;
+          position: relative;
+      }
+     .wraperItem{
+         float: left;
+     }
+     .Dian{
+         position: absolute;
+         bottom:10px;
+         z-index: 100;
+         text-align: center;
+       
+     }
+     .dian{
+         display: inline-block;
+         width: 10px;
+         height: 10px;
+         border-radius: 5px;
+         background: #cccc;
+         margin: 0 10px;
+     }
+     .dian.active{
+        background: red;
+     }
+     img{
+         width: 100%;
+         height:100%
+     }
+    </style>
+</head>
+<body>
+    <div id="wraper">
+      
+    </div>
+</body>
+<script src='./object.js'>
+
+
+</script>
+<script>
+     new alert({
+         el:"#wraper",
+         delaty:1000,
+         data:[
+             {
+                 name:'1',
+                 pictureUrl:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1752243568,253651337&fm=27&gp=0.jpg'
+             },
+             {
+                 name:'1',
+                 pictureUrl:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1393987749,3422146058&fm=27&gp=0.jpg'
+             },
+             {
+                 name:'1',
+                 pictureUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=353153124,1043237645&fm=27&gp=0.jpg'
+             },
+             {
+                 name:'1',
+                 pictureUrl:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2146046871,2611785107&fm=27&gp=0.jpg'
+             }
+         ]
+     })
+    
+</script>
+</html>

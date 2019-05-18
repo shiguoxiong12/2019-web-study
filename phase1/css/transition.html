@@ -22,11 +22,37 @@
        .hover:hover+.wraper .day{top:100px;opacity: 0;z-index:1;transition: all 1s linear;}
     </style>
 </head>
-<body>
+<body style="height:2000px">
     <a href="" class="hover">hover</a>
     <div class="wraper">
          <div class="day box">一日之计在于晨</div>
          <div class="year box">一年之计在于春</div>
     </div>
 </body>
+<script>
+    var a=null;
+    a=setTimeout(function(){
+    console.log(123)
+    clearTimeout(a)
+    },1000)
+    
+//函数防抖
+function hander(fn,time){
+    var timeout2=null;
+  
+    return function(){
+        console.log('timeout='+timeout2)
+       if(timeout2 !==null){
+           clearTimeout(timeout2)
+       }else{
+        timeout2=setTimeout(fn,time)
+       }
+    }
+}
+function fn(){
+    console.log("防抖成功")
+}
+window.addEventListener('scroll',hander(fn,1000))
+
+</script>
 </html>
