@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .wraper{
+         width:200px;
+         height:200px;
+         border:1px solid #ccc;
+         margin-top:30px;
+         position: relative;
+         margin-left:auto;
+         margin-right:auto;
+       }
+       .wraper .box{position: absolute;width:100%;height:100%;left:0}
+       .wraper .day{top:0px;z-index:1;opacity:1;background: blue}
+       .wraper .year{top:100px;opacity: 0;background-color:red;transition: all 1s linear}
+       .hover:hover+.wraper .year{top:0px;opacity: 1;color:#ffffff;z-index:2;transition: all 1s linear;}
+       .hover:hover+.wraper .day{top:100px;opacity: 0;z-index:1;transition: all 1s linear;}
+    </style>
+</head>
+<body>
+    <a href="" class="hover">hover</a>
+    <div class="wraper">
+         <div class="day box">一日之计在于晨</div>
+         <div class="year box">一年之计在于春</div>
+    </div>
+</body>
+</html>
