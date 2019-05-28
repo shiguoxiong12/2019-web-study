@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
+</head>
+<body>
+    <table id="demo" lay-filter="test"></table>
+</body>
+<script type="text/html" id="bar">
+    <i class="layui-icon layui-icon-add-1" lay-event="add"></i>  
+    <i class="layui-icon layui-icon-delete" lay-event="delete"></i>  
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="../layui-v2.4.5/layui/layui.all.js"></script>
+<script>
+    var defaultIndex=2;
+function addBarCodeTr(target){
+   let index=$(target).parent().attr("index");
+   addBar(index+1)
+}
+function addBar(index){
+    var cols=[];
+    if(index==1){//只有一列
+           var object = new Object();
+			object.field = 'barCode'+(1+parseInt(index));
+			object.width = 240;
+			object.edit = 'text';
+			//if(i < index-1 || i == 4){		//除了最后一列，其他全部为减号，如果是第五列，为减号,最多5列
+			//	object.title = "<span data-localize='BaseDataMgmt.Goods.cols.barcode_value'>條碼</span>"+(i+1)+"<div style='float:right;' index='"+(i+1)+"'><i class='iconfont' onclick='delBarCodeTr(this)' title='删除条形码列'>&#xe600;</i></div><div style='float:right;'> <input type='radio' name='defaultuse' value='"+(i+1)+"' title='' lay-filter='defaultuse'></div>";
+		//	}else{
+				object.title = "<span data-localize='BaseDataMgmt.Goods.cols.barcode_value'>條碼</span>"+(index+1)+"<div style='float:right;' index='"+(index+1)+"'><i onclick='addBarCodeTr(this);' class='layui-icon' title='新增条形码列'>&#xe654;</i><i class='iconfont' onclick='delBarCodeTr(this)' title='删除条形码列'>&#xe600;</i></div><div style='float:right;'> <input type='radio' name='defaultuse' value='"+(index+1)+"' title='' lay-filter='defaultuse'>";
+		//	}
+			cols.push(object);
+    }else{
+        for(var i=0;i<index;i++){
+            var object = new Object();
+			object.field = 'barCode'+(1+parseInt(i));
+			object.width = 240;
+			object.edit = 'text';
+            if(i<index-1 || i==4){
+                object.title = "<span data-localize='BaseDataMgmt.Goods.cols.barcode_value'>條碼</span>"+(i+1)+"<div style='float:right;' index='"+(i+1)+"'><i class='iconfont' onclick='delBarCodeTr(this)' title='删除条形码列'>&#xe600;</i></div><div style='float:right;'> <input type='radio' name='defaultuse' value='"+(i+1)+"' title='' lay-filter='defaultuse'></div>";
+            }else{
+				object.title = "<span data-localize='BaseDataMgmt.Goods.cols.barcode_value'>條碼</span>"+(index+1)+"<div style='float:right;' index='"+(index+1)+"'><i onclick='addBarCodeTr(this);' class='layui-icon' title='新增条形码列'>&#xe654;</i><i class='iconfont' onclick='delBarCodeTr(this)' title='删除条形码列'>&#xe600;</i></div><div style='float:right;'> <input type='radio' name='defaultuse' value='"+(index+1)+"' title='' lay-filter='defaultuse'>";
+			}
+            cols.push(object);
+        
+        }
+    }
+    var  option={
+            elem: '#demo',
+            data:[]
+            ,cols: [cols]
+        }
+    return option;
+}
+layui.use(['table'],function(){
+    var table=layui.table;
+    var tabIn=table.render(addBar(1));
+ 
+})
+
+//layui.demo()
+</script>
+</html>
