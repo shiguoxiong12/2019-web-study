@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"><father/></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+//组件事件属性穿透
+
+//声明父组件
+//声明子组件
+Vue.component('baseInput',{
+    // props:{
+    //    'value':{
+    //        default:''
+    //    },
+    //    'label':{
+
+    //    },
+    //    'placeholder':{
+
+    //    }
+    // },
+    mounted(){
+       console.log(this.$props)
+       console.log(this.$attrs)
+    },
+    template:`<div class="base">
+        {{$attrs.label}}
+       <input  v-bind="$attrs"/>
+    </div>`
+})
+Vue.component('father',{
+    props:{
+        showHit: Boolean,
+    },
+    data(){
+    return{
+        name:'史国雄',
+        value:12,
+        placeholder:"请输入用户名"
+    }
+    },
+    mounted(){
+          console.log(this.$props)
+    },
+    template:"<div><h2>还好啊，我是farther</h2><baseInput label='用户名' :placeholder='placeholder' :value='value' :name='name'/></div>",
+    // componets:{
+    //     child
+    // }
+})
+
+new Vue({
+    el:'#root'
+})
+</script>
+</html>

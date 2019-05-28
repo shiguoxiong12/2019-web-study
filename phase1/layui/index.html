@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../layui-v2.4.5/layui/css/layui.css">
+</head>
+<body>
+    <table id="demo" lay-filter="test"></table>
+</body>
+<script type="text/html" id="bar">
+    <i class="layui-icon layui-icon-add-1" lay-event="add"></i>  
+    <i class="layui-icon layui-icon-delete" lay-event="delete"></i>  
+</script>
+<script src="../layui-v2.4.5/layui/layui.all.js"></script>
+<script>
+    var defaultIndex=2;
+layui.define(['layer', 'laypage'], function(exports){
+  //do something
+  
+  exports('demo', function(){
+    alert('Hello World!');
+  });
+});
+var default12=[{
+        id:0,username:'史国雄','sex':"男",sign:"人生要奋斗",city:'南昌',experience:'800',score:'你好',classify:"程序员",wealth:'7万',
+     },{
+        id:1,username:'史国雄','sex':"男",sign:"人生要奋斗",city:'南昌',experience:'800',score:'你好',classify:"程序员",wealth:'7万',
+     },{
+        id:2,username:'史国雄','sex':"男",sign:"人生要奋斗",city:'南昌',experience:'800',score:'你好',classify:"程序员",wealth:'7万',
+     }
+     ]
+function data(newP){
+    
+    if( newP==null){
+        return false
+    }else{
+        default12.push(newP)
+    }
+   // return default12;
+  
+}
+layui.use(['table'],function(){
+    var table=layui.table;
+    table.render({
+    elem: '#demo',
+     data:default12
+    ,cols: [[ //表头
+      {title: '操作', width:80,toolbar:"#bar", fixed: 'left'},
+      {field: 'id', title: 'ID', width:80, sort: true}
+      ,{field: 'username', title: '<span>用户名</span>', width:80,}
+      ,{field: 'sex', title: '性别', width:80, sort: true}
+      ,{field: 'city', title: '城市', width:80} 
+      ,{field: 'sign', title: '签名', width: 177}
+      ,{field: 'experience', title: '积分', width: 80, sort: true}
+      ,{field: 'score', title: '评分', width: 80, sort: true}
+      ,{field: 'classify', title: '职业', width: 80}
+      ,{field: 'wealth', title: '财富', width: 135, sort: true}
+    ]]
+  });
+  layui.table.on('tool(test)',function(obj){
+   if(obj.event=='add'){//新增一行
+    defaultIndex=defaultIndex+1;
+        data({
+            id:defaultIndex,username:'','sex':"",sign:"",city:'',experience:'',score:'',classify:"",wealth:'',
+        })
+        console.log(default12)
+        table.reload("demo",{
+            data:default12  
+        })
+   }
+   if(obj.event=="delete"){
+     var id=obj.data.id;
+     console.log(id)
+     console.log(default12.findIndex(function(i){ return i.id==id; }))
+     default12.findIndex(function(i){return i.id==id; })
+     default12.splice(default12.findIndex(function(i){return i.id==id; }),1);
+     table.reload("demo",{
+        data:default12   
+        })
+   }
+  })
+})
+
+//layui.demo()
+</script>
+</html>
